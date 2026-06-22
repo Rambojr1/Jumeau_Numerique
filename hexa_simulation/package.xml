@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>hexa_simulation</name>
+  <version>0.0.1</version>
+  <description>Jumeau numerique minimal d'un hexapode pour RViz.</description>
+  <maintainer email="clement@example.com">Clement</maintainer>
+  <license>Proprietary</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz2</depend>
+  <depend>xacro</depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

@@ -1,0 +1,6 @@
+sim_hexa:
+  ros__parameters:
+    publish_rate_hz: 20.0
+    amplitude_coxa: 0.2
+    amplitude_femur: 0.35
+    amplitude_tibia: 0.45
