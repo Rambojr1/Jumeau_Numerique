@@ -1,0 +1,9 @@
+scan:
+  timestamp_utc: null
+  port: null
+  baudrate: null
+  protocol_version: null
+  read_only: true
+  scan_repetitions: 3
+
+servos: []
