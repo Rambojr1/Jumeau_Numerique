@@ -1,0 +1,203 @@
+schema_version: 1
+source: "urdf_extracted"
+hardware_validated: false
+
+joints:
+  leg_1_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_1_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_1_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_2_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_2_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_2_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_3_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_3_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_3_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_4_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_4_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_4_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_5_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_5_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_5_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_6_coxa_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_6_femur_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false
+  leg_6_tibia_joint:
+    id: null
+    physical_location: null
+    servo_model: null
+    sign: null
+    raw_zero: null
+    scale_rad_per_tick: null
+    offset_rad: 0.0
+    min_rad: null
+    max_rad: null
+    calibrated: false

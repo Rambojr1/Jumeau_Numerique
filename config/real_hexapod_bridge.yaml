@@ -1,0 +1,16 @@
+schema_version: 1
+hardware_validated: false
+
+bridge:
+  enabled: false
+  read_only: true
+  refuse_incomplete_mapping: true
+  expected_joint_count: 18
+  port: null
+  baudrate: null
+  protocol_version: null
+  publish_rate_hz: null
+  serial_timeout_ms: null
+  mapping_file: "config/joint_mapping.yaml"
+  id_inventory_file: "config/dynamixel_ids.yaml"
+  joint_states_topic: "/joint_states"
