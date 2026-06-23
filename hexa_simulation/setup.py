@@ -22,6 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'sim_hexa = hexa_simulation.sim_hexa:main',
-        ],
+                'gui_bridge = hexa_simulation.gui_bridge:main',
+            ],
     },
 )

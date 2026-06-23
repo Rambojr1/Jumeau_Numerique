@@ -1,207 +1,594 @@
-﻿<?xml version="1.0"?>
-<robot name="hexapode_v2">
+<?xml version="1.0"?>
+<robot name="hexapode_v4_phantomx_visual">
 
-  <material name="body_grey">
+  <!-- ================= MATERIAUX ================= -->
+  <material name="black">
+    <color rgba="0.01 0.01 0.01 1"/>
+  </material>
+
+  <material name="servo_black">
+    <color rgba="0.03 0.03 0.03 1"/>
+  </material>
+
+  <material name="metal_dark">
+    <color rgba="0.20 0.20 0.20 1"/>
+  </material>
+
+  <material name="metal_grey">
     <color rgba="0.45 0.45 0.45 1"/>
   </material>
 
-  <material name="leg_blue">
-    <color rgba="0.1 0.25 0.9 1"/>
+  <material name="electronics_blue">
+    <color rgba="0.05 0.25 0.75 1"/>
   </material>
 
-  <!-- Main body -->
+  <!-- ================= CORPS PHANTOMX HEXAGONAL APPROXIME ================= -->
+
   <link name="base_link">
+
+    <!-- Plaque basse hexagonale visuelle : 3 plaques fines superposées -->
     <visual>
+      <origin xyz="0 0 -0.018" rpy="0 0 0"/>
       <geometry>
-        <box size="0.36 0.18 0.05"/>
+        <box size="0.250 0.125 0.012"/>
       </geometry>
-      <material name="body_grey"/>
+      <material name="black"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 -0.017" rpy="0 0 1.047"/>
+      <geometry>
+        <box size="0.250 0.125 0.012"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 -0.016" rpy="0 0 -1.047"/>
+      <geometry>
+        <box size="0.250 0.125 0.012"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- Plaque haute hexagonale légèrement plus petite -->
+    <visual>
+      <origin xyz="0 0 0.018" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.230 0.105 0.010"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 0.019" rpy="0 0 1.047"/>
+      <geometry>
+        <box size="0.230 0.105 0.010"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 0.020" rpy="0 0 -1.047"/>
+      <geometry>
+        <box size="0.230 0.105 0.010"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- Entretoises -->
+    <visual>
+      <origin xyz="0.095 0.045 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.006" length="0.040"/></geometry>
+      <material name="metal_grey"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0.095 -0.045 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.006" length="0.040"/></geometry>
+      <material name="metal_grey"/>
+    </visual>
+
+    <visual>
+      <origin xyz="-0.095 0.045 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.006" length="0.040"/></geometry>
+      <material name="metal_grey"/>
+    </visual>
+
+    <visual>
+      <origin xyz="-0.095 -0.045 0" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.006" length="0.040"/></geometry>
+      <material name="metal_grey"/>
+    </visual>
+
+    <!-- Carte électronique visuelle sur le dessus -->
+    <visual>
+      <origin xyz="0.020 0 0.040" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.090 0.055 0.006"/>
+      </geometry>
+      <material name="electronics_blue"/>
+    </visual>
+
+  </link>
+
+  <!-- ================= LEG 1 ================= -->
+
+  <link name="leg_1_coxa_link">
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
     </visual>
   </link>
 
-  <!-- LEG 1 front left -->
-  <link name="leg_1_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
-  </link>
   <joint name="leg_1_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_1_coxa_link"/>
-    <origin xyz="0.13 0.09 0" rpy="0 0 0.65"/>
+    <parent link="base_link"/>
+    <child link="leg_1_coxa_link"/>
+    <origin xyz="0.108 0.063 0.000" rpy="0 0 0.524"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_1_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_1_femur_joint" type="revolute">
-    <parent link="leg_1_coxa_link"/><child link="leg_1_femur_link"/>
-    <origin xyz="0.09 0 0" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_1_coxa_link"/>
+    <child link="leg_1_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_1_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_1_tibia_joint" type="revolute">
-    <parent link="leg_1_femur_link"/><child link="leg_1_tibia_link"/>
-    <origin xyz="0.15 0 -0.05" rpy="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_1_femur_link"/>
+    <child link="leg_1_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
-  <!-- LEG 2 middle left -->
+  <!-- ================= LEG 2 ================= -->
+
   <link name="leg_2_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
+    </visual>
   </link>
+
   <joint name="leg_2_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_2_coxa_link"/>
-    <origin xyz="0 0.10 0" rpy="0 0 1.57"/>
+    <parent link="base_link"/>
+    <child link="leg_2_coxa_link"/>
+    <origin xyz="0.000 0.125 0.000" rpy="0 0 1.570"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_2_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_2_femur_joint" type="revolute">
-    <parent link="leg_2_coxa_link"/><child link="leg_2_femur_link"/>
-    <origin xyz="0.09 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_2_coxa_link"/>
+    <child link="leg_2_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_2_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_2_tibia_joint" type="revolute">
-    <parent link="leg_2_femur_link"/><child link="leg_2_tibia_link"/>
-    <origin xyz="0.15 0 -0.05"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_2_femur_link"/>
+    <child link="leg_2_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
-  <!-- LEG 3 back left -->
+  <!-- ================= LEG 3 ================= -->
+
   <link name="leg_3_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
+    </visual>
   </link>
+
   <joint name="leg_3_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_3_coxa_link"/>
-    <origin xyz="-0.13 0.09 0" rpy="0 0 2.50"/>
+    <parent link="base_link"/>
+    <child link="leg_3_coxa_link"/>
+    <origin xyz="-0.108 0.063 0.000" rpy="0 0 2.618"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_3_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_3_femur_joint" type="revolute">
-    <parent link="leg_3_coxa_link"/><child link="leg_3_femur_link"/>
-    <origin xyz="0.09 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_3_coxa_link"/>
+    <child link="leg_3_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_3_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_3_tibia_joint" type="revolute">
-    <parent link="leg_3_femur_link"/><child link="leg_3_tibia_link"/>
-    <origin xyz="0.15 0 -0.05"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_3_femur_link"/>
+    <child link="leg_3_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
-  <!-- LEG 4 front right -->
+  <!-- ================= LEG 4 ================= -->
+
   <link name="leg_4_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
+    </visual>
   </link>
+
   <joint name="leg_4_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_4_coxa_link"/>
-    <origin xyz="0.13 -0.09 0" rpy="0 0 -0.65"/>
+    <parent link="base_link"/>
+    <child link="leg_4_coxa_link"/>
+    <origin xyz="0.108 -0.063 0.000" rpy="0 0 -0.524"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_4_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_4_femur_joint" type="revolute">
-    <parent link="leg_4_coxa_link"/><child link="leg_4_femur_link"/>
-    <origin xyz="0.09 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_4_coxa_link"/>
+    <child link="leg_4_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_4_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_4_tibia_joint" type="revolute">
-    <parent link="leg_4_femur_link"/><child link="leg_4_tibia_link"/>
-    <origin xyz="0.15 0 -0.05"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_4_femur_link"/>
+    <child link="leg_4_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
-  <!-- LEG 5 middle right -->
+  <!-- ================= LEG 5 ================= -->
+
   <link name="leg_5_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
+    </visual>
   </link>
+
   <joint name="leg_5_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_5_coxa_link"/>
-    <origin xyz="0 -0.10 0" rpy="0 0 -1.57"/>
+    <parent link="base_link"/>
+    <child link="leg_5_coxa_link"/>
+    <origin xyz="0.000 -0.125 0.000" rpy="0 0 -1.570"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_5_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_5_femur_joint" type="revolute">
-    <parent link="leg_5_coxa_link"/><child link="leg_5_femur_link"/>
-    <origin xyz="0.09 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_5_coxa_link"/>
+    <child link="leg_5_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_5_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_5_tibia_joint" type="revolute">
-    <parent link="leg_5_femur_link"/><child link="leg_5_tibia_link"/>
-    <origin xyz="0.15 0 -0.05"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_5_femur_link"/>
+    <child link="leg_5_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
-  <!-- LEG 6 back right -->
+  <!-- ================= LEG 6 ================= -->
+
   <link name="leg_6_coxa_link">
-    <visual><origin xyz="0.045 0 0"/><geometry><box size="0.09 0.025 0.025"/></geometry><material name="leg_blue"/></visual>
+    <visual>
+      <origin xyz="0.026 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.052 0.018 0.018"/></geometry>
+      <material name="black"/>
+    </visual>
+
+    <!-- servo coxa -->
+    <visual>
+      <origin xyz="0.010 0 0.030" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.030"/></geometry>
+      <material name="servo_black"/>
+    </visual>
   </link>
+
   <joint name="leg_6_coxa_joint" type="revolute">
-    <parent link="base_link"/><child link="leg_6_coxa_link"/>
-    <origin xyz="-0.13 -0.09 0" rpy="0 0 -2.50"/>
+    <parent link="base_link"/>
+    <child link="leg_6_coxa_link"/>
+    <origin xyz="-0.108 -0.063 0.000" rpy="0 0 -2.618"/>
     <axis xyz="0 0 1"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_6_femur_link">
-    <visual><origin xyz="0.075 0 -0.025" rpy="0 0.25 0"/><geometry><box size="0.15 0.022 0.022"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo femur -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.040 0.035"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- femur bracket -->
+    <visual>
+      <origin xyz="0.035 0 -0.030" rpy="0 0.55 0"/>
+      <geometry><box size="0.065 0.020 0.016"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
   </link>
+
   <joint name="leg_6_femur_joint" type="revolute">
-    <parent link="leg_6_coxa_link"/><child link="leg_6_femur_link"/>
-    <origin xyz="0.09 0 0"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_6_coxa_link"/>
+    <child link="leg_6_femur_link"/>
+    <origin xyz="0.052 0 0.000" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
   <link name="leg_6_tibia_link">
-    <visual><origin xyz="0.09 0 -0.045" rpy="0 0.45 0"/><geometry><box size="0.18 0.018 0.018"/></geometry><material name="leg_blue"/></visual>
+    <!-- servo tibia -->
+    <visual>
+      <origin xyz="0.000 0 0.000" rpy="0 0 0"/>
+      <geometry><box size="0.032 0.038 0.032"/></geometry>
+      <material name="servo_black"/>
+    </visual>
+
+    <!-- tibia long segment -->
+    <visual>
+      <origin xyz="0.070 0 -0.060" rpy="0 0.75 0"/>
+      <geometry><box size="0.133 0.018 0.014"/></geometry>
+      <material name="metal_dark"/>
+    </visual>
+
+    <!-- pied -->
+    <visual>
+      <origin xyz="0.135 0 -0.110" rpy="0 0.15 0"/>
+      <geometry><box size="0.045 0.030 0.010"/></geometry>
+      <material name="black"/>
+    </visual>
   </link>
+
   <joint name="leg_6_tibia_joint" type="revolute">
-    <parent link="leg_6_femur_link"/><child link="leg_6_tibia_link"/>
-    <origin xyz="0.15 0 -0.05"/>
-    <axis xyz="0 1 0"/>
+    <parent link="leg_6_femur_link"/>
+    <child link="leg_6_tibia_link"/>
+    <origin xyz="0.065 0 -0.035" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
     <limit lower="-1.57" upper="1.57" effort="10" velocity="1"/>
   </joint>
 
